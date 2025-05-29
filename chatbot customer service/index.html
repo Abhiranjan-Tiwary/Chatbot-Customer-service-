@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Additional custom styles for dark mode and animations */
+        .dark {
+            background-color: #1a202c;
+            color: #cbd5e0;
+        }
+        .dark .chat-container {
+            background-color: #2d3748;
+        }
+        .dark input, .dark button {
+            background-color: #4a5568;
+            color: #edf2f7;
+        }
+        /* Header styling */
+        .chat-header {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+            color: #ffffff;
+        }
+        /* Chat bubble animations */
+        .message {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Message styling */
+        .message.user {
+            background-color: #bee3f8;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-self: flex-end;
+            max-width: 80%;
+        }
+        .message.assistant {
+            background-color: #fbd38d;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-self: flex-start;
+            max-width: 80%;
+        }
+        /* Update gradient backgrounds */
+        body {
+            background: linear-gradient(to right, #06b6d4, #3b82f6);
+        }
+    </style>
+</head>
+<body 
+  style="background-image: url('background.jpg'); background-size: cover; background-position: center;" 
+  class="flex flex-col items-center justify-center min-h-screen transition-colors duration-500" 
+  id="body"
+>
+    <!-- Theme toggle button -->
+    <div class="absolute top-4 right-4">
+        <button id="themeToggle" class="px-4 py-2 bg-blue-600 text-white rounded shadow transform hover:scale-105 transition-transform">Toggle Theme</button>
+    </div>
+    <div class="chat-container bg-white shadow-2xl rounded-lg w-full max-w-4xl h-full max-h-screen overflow-hidden flex flex-col">
+        <!-- Chat header -->
+        <header class="chat-header p-6 flex items-center justify-between">
+            <h1 class="text-4xl font-bold">Chat Support</h1>
+            <img src="https://placehold.co/60x60" alt="Logo" class="rounded-full shadow-lg">
+        </header>
+        <!-- Chat box -->
+        <main id="chat-box" class="p-6 flex flex-col space-y-4 flex-grow overflow-y-auto bg-gray-100 dark:bg-gray-800" style="max-height: 500px;"></main>
+        <!-- Input area -->
+        <footer class="p-4 bg-gray-200 dark:bg-gray-700">
+            <div class="flex">
+                <input type="text" id="user-input" class="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your message...">
+                <button onclick="sendMessage()" class="px-6 bg-blue-500 text-white rounded-r-lg shadow hover:bg-blue-600 transition-all">Send</button>
+            </div>
+        </footer>
+    </div>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Toggle dark/light theme with smooth effect
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.getElementById('body').classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
